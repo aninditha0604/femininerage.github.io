@@ -37,43 +37,43 @@ users = [
     {
         "id": 1,
         "username": "clara",
-        "password": generate_password_hash("clara123"),
+        "password": generate_password_hash("surprisewood_3"),
         "isCreator": True
     },
     {
         "id": 2,
         "username": "mickey",
-        "password": generate_password_hash("mickey123"),
+        "password": generate_password_hash("michaelarosealfano_30"),
         "isCreator": False
     },
     {
         "id": 3,
         "username": "hannah",
-        "password": generate_password_hash("hannah123"),
+        "password": generate_password_hash("greatwhitefart_14"),
         "isCreator": False
     },
     {
         "id": 4,
         "username": "fiona",
-        "password": generate_password_hash("fiona123"),
+        "password": generate_password_hash("moomoohorsecousin_17"),
         "isCreator": False
     },
     {
         "id": 5,
         "username": "lydia",
-        "password": generate_password_hash("lydia123"),
+        "password": generate_password_hash("naughtygirl_20"),
         "isCreator": False
     },
     {
         "id": 6,
         "username": "jenna",
-        "password": generate_password_hash("jenna123"),
+        "password": generate_password_hash("bombastic_24"),
         "isCreator": False
     },
     {
         "id": 7,
         "username": "anin",
-        "password": generate_password_hash("anin123"),
+        "password": generate_password_hash("cooch_6"),
         "isNextCreator": True
     }
 ]
