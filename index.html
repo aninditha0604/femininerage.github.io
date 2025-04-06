@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Feminine Rage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <style>
+        /* Main Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        /* Content Area */
+        .content {
+            flex-grow: 1;
+            padding: 40px;
+            background-color: #f8f4e3; /* Cream background color */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centers content vertically */
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Login Form Styling */
+        #loginForm {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Border Styles */
+        .border-left, .border-right {
+            width: 80px; /* Adjust based on your border images */
+            background-repeat: repeat-y;
+            background-size: 100% auto;
+        }
+
+        .border-left {
+            background-image: url('border.jpg'); /* Replace with your actual image path */
+        }
+
+        .border-right {
+            background-image: url('border.jpg'); /* Replace with your actual image path */
+        }
+
+        /* Typography */
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #8b3a3a; /* Burgundy color */
+            font-size: 42px;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #8b3a3a;
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        /* Form Styles */
+        form {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #d3c5a3;
+            border-radius: 4px;
+            font-family: 'Georgia', serif;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .submit-btn {
+            background-color: #333;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #555;
+        }
+
+        /* Dashboard styles */
+        .dashboard {
+            display: none;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .nav-btn {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid #d3c5a3;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            transition: background-color 0.3s;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background-color: #e6dcc6;
+        }
+
+        .user-info {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid #d3c5a3;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .next-question-creator {
+            font-weight: bold;
+            color: #8b3a3a;
+        }
+
+        .question-creator-panel {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid #d3c5a3;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .questions-list {
+            width: 100%;
+        }
+
+        .question-item {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid #d3c5a3;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            text-align: left;
+        }
+
+        .answers {
+            margin-top: 10px;
+        }
+
+        .user-answer {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            border: 1px solid #e6dcc6;
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #e6dcc6;
+            padding-bottom: 8px;
+        }
+
+        .post-author {
+            font-weight: bold;
+            color: #8b3a3a;
+        }
+
+        .post-date {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .notification {
+            background-color: #ffebcd;
+            border: 1px solid #f0ad4e;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+        }
+
+        /* Gallery Section Styles */
+        .gallery-container {
+            width: 100%;
+            display: none;
+        }
+
+        .gallery-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .gallery-upload {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid #d3c5a3;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .gallery-item {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid #d3c5a3;
+            border-radius: 6px;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background-color: #eee;
+        }
+
+        .gallery-caption {
+            padding: 10px;
+            font-style: italic;
+        }
+
+        .gallery-author {
+            display: block;
+            font-weight: bold;
+            color: #8b3a3a;
+            margin-top: 5px;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .file-input-wrapper input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-input-button {
+            background-color: #e6dcc6;
+            color: #333;
+            padding: 8px 16px;
+            border: 1px solid #d3c5a3;
+            border-radius: 4px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .file-name {
+            margin-left: 10px;
+            font-style: italic;
+        }
+
+        /* Content Views */
+        .content-view {
+            display: none;
+            width: 100%;
+        }
+
+        .content-view.active {
+            display: block;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .border-left, .border-right {
+                width: 100%;
+                height: 40px;
+                background-repeat: repeat-x;
+                background-size: auto 100%;
+            }
+
+            .content {
+                padding: 20px;
+                order: 2;
+                min-height: 80vh; /* Ensure we have enough space on mobile */
+            }
+
+            .border-left {
+                order: 1;
+            }
+
+            .border-right {
+                order: 3;
+            }
+
+            .title {
+                font-size: 32px;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+
+            .form-row input, .form-row button {
+                width: 100%;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="border-left"></div>
+        <div class="content">
+            <!-- Login Form -->
+            <div id="loginForm">
+                <h1 class="title">The Feminine Rage</h1>
+                <form>
+                    <input type="text" id="username" placeholder="Enter username">
+                    <input type="password" id="password" placeholder="Enter password">
+                    <button type="button" id="submitBtn" class="submit-btn">Submit</button>
+                </form>
+            </div>
+
+            <!-- Dashboard (hidden initially) -->
+            <div class="dashboard" id="dashboard">
+                <div class="dashboard-header">
+                    <h1 class="title">The Feminine Rage</h1>
+                    <button id="logoutBtn" class="submit-btn">Logout</button>
+                </div>
+
+                <!-- User Info Panel -->
+                <div class="user-info" id="userInfo">
+                    <h2>Welcome, <span id="currentUser">User</span>!</h2>
+                    <p id="userRole">You are currently viewing this month's questions.</p>
+                    <p>Next month's question creator: <span class="next-question-creator" id="nextCreator">Anin</span></p>
+                    <p id="monthInfo">Current Month: March 2025</p>
+                </div>
+
+                <!-- Navigation -->
+                <div class="navigation">
+                    <button class="nav-btn active" data-target="questionsList">Questions</button>
+                    <button class="nav-btn" data-target="galleryContainer">Gallery</button>
+                </div>
+
+                <!-- Question Creator Panel (only visible to current month's creator) -->
+                <div class="question-creator-panel content-view" id="creatorPanel" style="display: none;">
+                    <div class="notification">
+                        <p><strong>It's your turn to create this month's questions!</strong> Please submit 5 thoughtful questions that will be sent to all members.</p>
+                    </div>
+                    <h2>Create This Month's Questions</h2>
+                    <form id="questionForm">
+                        <div id="questionFields">
+                            <div>
+                                <textarea id="question1" placeholder="Question 1" required></textarea>
+                            </div>
+                            <div>
+                                <textarea id="question2" placeholder="Question 2" required></textarea>
+                            </div>
+                            <div>
+                                <textarea id="question3" placeholder="Question 3" required></textarea>
+                            </div>
+                            <div>
+                                <textarea id="question4" placeholder="Question 4" required></textarea>
+                            </div>
+                            <div>
+                                <textarea id="question5" placeholder="Question 5" required></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Questions to All Members</button>
+                    </form>
+                </div>
+
+                <!-- Questions and Answers -->
+                <div class="questions-list content-view active" id="questionsList">
+                    <h2>March 2025 Questions</h2>
+                    <p>Created by: <span id="currentCreator" class="post-author">Clara</span></p>
+
+                    <!-- Sample Question and Answers -->
+                    <div class="question-item">
+                        <div class="post-header">
+                            <h3>1. What feminine qualities do you most admire in yourself and why?</h3>
+                            <span class="post-date">March 1, 2025</span>
+                        </div>
+                        <div class="user-answer-form">
+                            <textarea placeholder="Your answer"></textarea>
+                            <button class="submit-btn">Submit</button>
+                        </div>
+                        <div class="answers">
+                            <div class="user-answer">
+                                <div class="post-header">
+                                    <span class="post-author">Mickey</span>
+                                    <span class="post-date">March 3, 2025</span>
+                                </div>
+                                <div class="post-content">
+                                    <p>I admire my ability to be nurturing and supportive while maintaining strong boundaries. These qualities have helped me build meaningful relationships.</p>
+                                </div>
+                            </div>
+                            <div class="user-answer">
+                                <div class="post-header">
+                                    <span class="post-author">Clara</span>
+                                    <span class="post-date">March 5, 2025</span>
+                                </div>
+                                <div class="post-content">
+                                    <p>My intuition and empathy are qualities I value most. They guide me to understand others on a deeper level.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="post-header">
+                            <h3>2. How have you connected with your feminine energy this month?</h3>
+                            <span class="post-date">March 1, 2025</span>
+                        </div>
+                        <div class="user-answer-form">
+                            <textarea placeholder="Your answer"></textarea>
+                            <button class="submit-btn">Submit</button>
+                        </div>
+                        <div class="answers">
+                            <div class="user-answer">
+                                <div class="post-header">
+                                    <span class="post-author">Mickey</span>
+                                    <span class="post-date">March 4, 2025</span>
+                                </div>
+                                <div class="post-content">
+                                    <p>I've been practicing more self-care through meditation and journaling, which has helped me reconnect with my intuitive side.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="post-header">
+                            <h3>3. What book, movie, or artwork has inspired your feminine journey recently?</h3>
+                            <span class="post-date">March 1, 2025</span>
+                        </div>
+                        <div class="user-answer-form">
+                            <textarea placeholder="Your answer"></textarea>
+                            <button class="submit-btn">Submit</button>
+                        </div>
+                        <div class="answers">
+                            <div class="user-answer">
+                                <div class="post-header">
+                                    <span class="post-author">Hannah</span>
+                                    <span class="post-date">March 6, 2025</span>
+                                </div>
+                                <div class="post-content">
+                                    <p>"Women Who Run With the Wolves" has been transformative in understanding the wild feminine nature within me.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Section -->
+                <div class="gallery-container content-view" id="galleryContainer">
+                    <h2>Feminine Journey Gallery</h2>
+                    <p>Share images that represent your feminine journey with our community.</p>
+
+                    <!-- Image Upload Section -->
+                    <div class="gallery-upload">
+                        <h3>Share Your Image</h3>
+                        <form id="galleryUploadForm">
+                            <div class="file-input-wrapper">
+                                <button class="file-input-button">Choose Image</button>
+                                <span class="file-name" id="fileName">No file chosen</span>
+                                <input type="file" id="imageUpload" accept="image/*">
+                            </div>
+                            <textarea id="imageCaption" placeholder="Add a caption describing what this image means to your feminine journey..." required></textarea>
+                            <button type="submit" class="submit-btn">Share with Community</button>
+                        </form>
+                    </div>
+
+                    <!-- Gallery Grid -->
+                    <div class="gallery-grid" id="galleryGrid">
+                        <!-- Sample Gallery Items -->
+                        <div class="gallery-item">
+                            <div class="gallery-image" style="background-image: url('/api/placeholder/400/320'); background-size: cover; background-position: center;"></div>
+                            <div class="gallery-caption">
+                                My altar space where I connect with feminine energy through ritual and meditation.
+                                <span class="gallery-author">Mickey</span>
+                                <span class="post-date">March 12, 2025</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-image" style="background-image: url('/api/placeholder/400/320'); background-size: cover; background-position: center;"></div>
+                            <div class="gallery-caption">
+                                Morning journaling ritual surrounded by plants - embracing the nurturing feminine.
+                                <span class="gallery-author">Clara</span>
+                                <span class="post-date">March 10, 2025</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-image" style="background-image: url('/api/placeholder/400/320'); background-size: cover; background-position: center;"></div>
+                            <div class="gallery-caption">
+                                Artwork that reminds me of the goddess archetype I'm currently working with.
+                                <span class="gallery-author">Hannah</span>
+                                <span class="post-date">March 8, 2025</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-image" style="background-image: url('/api/placeholder/400/320'); background-size: cover; background-position: center;"></div>
+                            <div class="gallery-caption">
+                                My sacred space in nature where I feel most connected to my feminine essence.
+                                <span class="gallery-author">Fiona</span>
+                                <span class="post-date">March 15, 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="border-right"></div>
+    </div>
+
+    <script>
+        // Sample user data (in a real app, this would come from a database)
+        const users = [
+            { username: 'clara', password: 'clara123', isCreator: true },
+            { username: 'mickey', password: 'mickey123', isCreator: false },
+            { username: 'hannah', password: 'hannah123', isCreator: false },
+            { username: 'fiona', password: 'fiona123', isCreator: false },
+            { username: 'lydia', password: 'lydia123', isCreator: false },
+            { username: 'jenna', password: 'jenna123', isCreator: false },
+            { username: 'anin', password: 'anin123', isNextCreator: true }
+        ];
+
+        // Login validation
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const username = document.getElementById('username').value.toLowerCase();
+            const password = document.getElementById('password').value;
+
+            // Find user
+            const user = users.find(u => u.username === username && u.password === password);
+
+            if (user) {
+                // Show dashboard, hide login
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+
+                // Set user information
+                document.getElementById('currentUser').textContent = username.charAt(0).toUpperCase() + username.slice(1);
+
+                // Check if this user is the current month's question creator
+                if (user.isCreator) {
+                    document.getElementById('userRole').textContent = "You are this month's question creator!";
+                    document.getElementById('creatorPanel').style.display = 'block';
+                } else {
+                    document.getElementById('userRole').textContent = "You are currently viewing this month's questions.";
+                    document.getElementById('creatorPanel').style.display = 'none';
+                }
+            } else {
+                alert('Invalid username or password. Please try again.');
+            }
+        });
+
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        });
+
+        // Navigation functionality
+        document.querySelectorAll('.nav-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons and content views
+                document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.content-view').forEach(view => view.classList.remove('active'));
+
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                // Show the associated content view
+                const targetId = this.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // Question form submission
+        document.getElementById('questionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Your questions have been sent to all members via email!');
+
+            // In a real application, this would:
+            // 1. Save the questions to a database
+            // 2. Send emails to all members
+            // 3. Update the UI to show the questions were submitted
+            // 4. Update the rotation to assign the next creator
+
+            // Simulate successful submission
+            document.getElementById('creatorPanel').innerHTML = '<div class="notification"><p><strong>Thank you!</strong> Your questions have been submitted and sent to all members.</p></div>';
+        });
+
+        // Answer submission (simulated)
+        const answerButtons = document.querySelectorAll('.user-answer-form button');
+        answerButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const form = this.parentElement;
+                const textarea = form.querySelector('textarea');
+                if (textarea.value.trim() !== '') {
+                    // Get the currently logged in user
+                    const currentUser = document.getElementById('currentUser').textContent;
+                    const currentDate = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+                    // Create a new answer element
+                    const answerDiv = document.createElement('div');
+                    answerDiv.className = 'user-answer';
+                    answerDiv.innerHTML = `
+                        <div class="post-header">
+                            <span class="post-author">${currentUser}</span>
+                            <span class="post-date">${currentDate}</span>
+                        </div>
+                        <div class="post-content">
+                            <p>${textarea.value}</p>
+                        </div>
+                    `;
+
+                    // Add it to the answers section
+                    const answersSection = form.nextElementSibling;
+                    answersSection.appendChild(answerDiv);
+
+                    // Clear the textarea
+                    textarea.value = '';
+
+                    // In a real app, this would save to a database
+                }
+            });
+        });
+
+        // Function to get the name of the next month
+        function getNextMonthName() {
+            const months = ["January", "February", "March", "April", "May", "June", 
+                           "July", "August", "September", "October", "November", "December"];
+            const currentDate = new Date();
+            const nextMonth = (currentDate.getMonth() + 1) % 12;
+            return months[nextMonth];
+        }
+
+        // Update the next month's name in the UI
+        document.addEventListener('DOMContentLoaded', function() {
+            const nextMonth = getNextMonthName();
+            const nextCreatorElement = document.getElementById('nextCreator');
+            if (nextCreatorElement) {
+                nextCreatorElement.textContent += ` (${nextMonth})`;
+            }
+        });
+
+        // File input display
+        document.getElementById('imageUpload').addEventListener('change', function() {
+            const fileName = this.files[0] ? this.files[0].name : 'No file chosen';
+            document.getElementById('fileName').textContent = fileName;
+        });
+
+        // Gallery upload form submission
+        document.getElementById('galleryUploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const caption = document.getElementById('imageCaption').value;
+            if (!caption) {
+                alert('Please add a caption for your image.');
+                return;
+            }
+
+            const fileInput = document.getElementById('imageUpload');
+            if (!fileInput.files.length) {
+                alert('Please select an image to upload.');
+                return;
+            }
+
+            // Get the currently logged in user
+            const currentUser = document.getElementById('currentUser').textContent;
+            const currentDate = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+            // In a real application, you would upload the file to a server
+            // For this example, we'll simulate adding the image to the gallery
+
+            // Create a new gallery item
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+
+            // Simulate a placeholder image since we can't actually save the uploaded file
+            galleryItem.innerHTML = `
+                <div class="gallery-image" style="background-image: url('/api/placeholder/400/320'); background-size: cover; background-position: center;"></div>
+                <div class="gallery-caption">
+                    ${caption}
+                    <span class="gallery-author">${currentUser}</span>
+                    <span class="post-date">${currentDate}</span>
+                </div>
+            `;
+
+            // Add new item to the beginning of the gallery grid
+            const galleryGrid = document.getElementById('galleryGrid');
+            galleryGrid.insertBefore(galleryItem, galleryGrid.firstChild);
+
+            // Reset the form
+            document.getElementById('imageCaption').value = '';
+            document.getElementById('imageUpload').value = '';
+            document.getElementById('fileName').textContent = 'No file chosen';
+
+            alert('Your image has been shared!');
+        });
+    </script>
+</body>
+</html>
